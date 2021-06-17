@@ -6,11 +6,33 @@
 		$errusername="";
 		$password="";
 		$errpassword="";
+		$confirm_password="";
+		$errconfirm_password="";
+		$email="";
+		$erremail="";
+		$address="";
+		$erraddress="";
 		
 		if($_SERVER["REQUEST_METHOD"]=="POST")
 		{
 			if(empty($_POST["name"]))
 				$errname="Name required";
+			
+			if(empty($_POST["username"]))
+				$errusername="Username required";
+			
+			if(empty($_POST["password"]))
+				$errpassword="Password required";
+			
+			if(empty($_POST["confirm_password"]))
+				$errconfirm_password="You must confirm your password";
+			
+			if(empty($_POST["email"]))
+				$erremail="You must input a valid email";
+			
+			if(empty($_POST["address"]))
+				$erraddress="Adress required";
+			
 		}
 		
 		
@@ -39,7 +61,7 @@
 					</td>
 					
 					<td>
-						<input type="text" placeholder ="Name" name= "name">
+						<input type="text" placeholder ="Name" name= "name"> <span><?php echo $errname;?></span>
 					</td>
 				</tr>
 				
@@ -50,7 +72,7 @@
 					</td>
 					
 					<td>
-						<input type="text" placeholder = "Username" name= "username">
+						<input type="text" placeholder = "Username" name= "username"><span><?php echo $errusername;?></span>
 					</td>
 				</tr>
 				
@@ -61,7 +83,7 @@
 					</td>
 					
 					<td>
-						<input type="text" placeholder = "Password" name= "password">
+						<input type="text" placeholder = "Password" name= "password"><span><?php echo $errpassword;?></span>
 					</td>
 				</tr>
 				
@@ -72,7 +94,7 @@
 					</td>
 					
 					<td>
-						<input type="text" placeholder = " Confirm Password" name= "confirm_password">
+						<input type="text" placeholder = " Confirm Password" name= "confirm_password"><span><?php echo $errconfirm_password;?></span>
 					</td>
 				</tr>
 				
@@ -83,7 +105,7 @@
 					</td>
 					
 					<td>
-						<input type="text" placeholder = "Email" name= "email" name="email">
+						<input type="text" placeholder = "Email" name= "email" name="email"><span><?php echo $erremail;?></span>
 					</td>
 				</tr>
 		
@@ -105,7 +127,30 @@
 					</td>
 					
 					<td>
-						<input type="text" name="address">
+						<input type="text" placeholder= "Street address">
+					</td>
+					
+					
+				</tr>
+				
+				<tr>
+					<td>
+						
+					</td>
+					
+					<td>
+						<input type="text" placeholder ="City"> - 
+						<input type="text" placeholder ="State">
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						
+					</td>
+					
+					<td>
+						<input type="text" placeholder ="Postal/Zip code">
 					</td>
 				</tr>
 				
@@ -117,14 +162,23 @@
 					
 					<td>
 						<select name= "day">
-							<option>
+							<option selected disabled>
 								Day
 								
 							</option>
+							
+							<option>
+							
+							
+								<?php for($i=1;$i<=31;$i++)
+									 echo "<option>$i</option>";
+								?>
+							</option>	
+							
 						</select>
 						
 						<select name= "month">
-							<option>
+							<option selected disabled>
 								Month
 							</option>
 							
@@ -178,9 +232,12 @@
 						</select>
 						
 						<select name= "year">
-							<option>
+							<option selected disabled>
 								Year
 							</option>
+							<?php for($i=2001;$i<=2031;$i++)
+									 echo "<option>$i</option>";
+								?>
 						</select>
 					</td>
 				</tr>
